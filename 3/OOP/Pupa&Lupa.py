@@ -89,7 +89,7 @@ class Pupa(Worker):
 class Lupa(Worker):
     def do_work(self, filename1, filename2):
         """
-        Summation matrices
+        Subtraction matrices
 
         Parameters
         ----------
