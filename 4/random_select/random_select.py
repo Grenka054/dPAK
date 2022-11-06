@@ -9,18 +9,10 @@ def method1(real, sint, p):
     return res
 
 
-def my_func(array):
-    return array[0] if np.random.rand() > args.p else array[1]
-
-
 def method2(real, sint, p):
     np.random.seed(1818)
     matrix_2d = np.column_stack((real, sint))
     return np.apply_along_axis(lambda arr: arr[0] if np.random.rand() > p else arr[1], 1, matrix_2d)
-
-
-def bl(arr):
-    return arr[0][0] if np.random.rand() > args.p else arr[0][1]
 
 
 def method3(real, sint, p):
