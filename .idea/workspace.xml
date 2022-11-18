@@ -37,6 +37,10 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Documents\GitHub\dPAK\5\data" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Documents\GitHub\dPAK\5\Titanic\data" />
+      <recent name="D:\Documents\GitHub\dPAK\5\Titanic" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -48,7 +52,7 @@
       <updated>1668261721365</updated>
       <workItem from="1668261722774" duration="667000" />
       <workItem from="1668615476113" duration="5651000" />
-      <workItem from="1668686059453" duration="17838000" />
+      <workItem from="1668686059453" duration="17869000" />
     </task>
     <servers />
   </component>
