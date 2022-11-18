@@ -1,6 +1,7 @@
 import re
 import numpy as np
 import pandas as pd
+from datetime import time
 
 
 # REWORKER FOR INITIAL FILES
@@ -35,28 +36,62 @@ def fix_csv(csv_name):
 
 
 def stage1(file):
-    df_titanic = pd.read_csv(file)
-    liters = df_titanic["liters_drunk"]
+    df = pd.read_csv(file)
+    liters = df["liters_drunk"]
     mean_liters = round(liters[(0 <= liters) & (liters <= 5)].mean())
-    for ind, row in df_titanic.iterrows():
+    for ind, row in df.iterrows():
+
         # sex
         rec = row['sex']
         rec_u = rec.upper()
         if rec_u == 'M' or rec_u == 'М':
-            df_titanic = df_titanic.replace(rec, '1')
+            df = df.replace(rec, '1')
         elif rec_u == 'Ж':
-            df_titanic = df_titanic.replace(rec, '0')
+            df = df.replace(rec, '0')
         else:
-            df_titanic = df_titanic.drop(ind)
+            df = df.drop(ind)
+
         # liters_drunk
         rec = row["liters_drunk"]
         if (rec < 0) | (rec > 5):
-            df_titanic = df_titanic.replace(rec, mean_liters)
+            df = df.replace(rec, mean_liters)
 
     # row_number
-    df_titanic["row_number"] = df_titanic["row_number"].fillna(np.nanmax(df_titanic["row_number"]))
-    return df_titanic
+    df["row_number"] = df["row_number"].fillna(np.nanmax(df["row_number"]))
+    return df
 
 
-corrected_file = fix_csv("data/titanic_with_labels.csv")
-stage1(corrected_file).to_csv('out.csv', index=False)
+def stage2(file1, file2):
+    df = pd.read_csv(file1)
+
+    # age
+    df['age_child'] = df.apply(lambda row: 1 if row.age < 18 else 0, axis=1)
+    df['age_adult'] = df.apply(lambda row: 1 if 18 <= row.age <= 50 else 0, axis=1)
+    df['age_old'] = df.apply(lambda row: 1 if row.age > 50 else 0, axis=1)
+
+    # drink
+    for ind, row in df.iterrows():
+        if re.search(r'beer', row['drink']):
+            df = df.replace(row['drink'], 1)
+        else:
+            df = df.replace(row['drink'], 0)
+
+    # left join on check_number
+    df_ses = pd.read_csv(file2)
+    df = df.merge(df_ses, on='check_number', how='left')
+
+    # get hour from session_start
+    df['session_start'] = pd.to_datetime(df['session_start']).dt.hour
+
+    df['start_morning'] = df.apply(lambda row: 1 if row.session_start < 12 else 0, axis=1)
+    df['start_afternoon'] = df.apply(lambda row: 1 if 12 <= row.session_start < 18 else 0, axis=1)
+    df['start_evening'] = df.apply(lambda row: 1 if row.session_start >= 18 else 0, axis=1)
+
+    return df
+
+
+corrected_titanic = fix_csv("data/titanic_with_labels.csv")
+corrected_sessions = fix_csv("data/cinema_sessions.csv")
+df_st1 = stage1(corrected_titanic)
+df_st1.to_csv('stage1.csv', index=False)
+stage2('stage1.csv', corrected_sessions).to_csv('stage2.csv', index=False)
