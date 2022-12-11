@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32c497f1-617c-4422-a6c0-f26fe2ecb495" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/7/seventh.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/7/seventh.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +39,7 @@
     "WebServerToolWindowFactoryState": "false",
     "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
     "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "last_opened_file_path": "D:/Documents/GitHub/dPAK/7",
+    "last_opened_file_path": "D:/Documents/GitHub/dPAK",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable"
   }
 }]]></component>
@@ -112,7 +113,9 @@
       <workItem from="1670171021872" duration="13501000" />
       <workItem from="1670234682101" duration="2639000" />
       <workItem from="1670341311100" duration="48000" />
-      <workItem from="1670659037432" duration="10194000" />
+      <workItem from="1670659037432" duration="10348000" />
+      <workItem from="1670680925161" duration="14000" />
+      <workItem from="1670737585142" duration="700000" />
     </task>
     <servers />
   </component>
@@ -126,6 +129,11 @@
           <url>notebook://D:/Documents/GitHub/dPAK/6/lab.ipynb</url>
           <line>6</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>notebook://D:/Documents/GitHub/dPAK/7/seventh.ipynb</url>
+          <line>54</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
